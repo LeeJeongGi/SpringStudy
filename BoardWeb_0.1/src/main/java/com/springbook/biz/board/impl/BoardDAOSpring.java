@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.springbook.biz.board.BoardVO;
 
-@Repository
+
 public class BoardDAOSpring extends JdbcDaoSupport {
 	
 	//SQL 명령어들 

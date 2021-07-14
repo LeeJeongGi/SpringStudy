@@ -11,26 +11,27 @@ public class BoardServiceClient {
 	
 	public static void main(String[] args) {
 		
-		//1.Spring ÄÁÅ×ÀÌ³Ê ±¸µ¿
+		//1.Spring ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½
 		AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
 		
-		//2.Spring ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ boardserviceimpl °´Ã¼ lookupÇÑ´Ù
+		//2.Spring ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ê·Îºï¿½ï¿½ï¿½ boardserviceimpl ï¿½ï¿½Ã¼ lookupï¿½Ñ´ï¿½
 		BoardService boardService = (BoardService) container.getBean("boardService");
 		
-		//3.±Û µî·Ï ±â´É Å×½ºÆ®
+		//3.ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
 		BoardVO vo = new BoardVO();
-		vo.setTitle("ÀÓ½Ã Á¦¸ñ");
-		vo.setWriter("ÀÌÁ¤±â");
-		vo.setContent("namespace ¿Ö ¾È³ª¿Ã±î");
+		vo.setTitle("ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		vo.setWriter("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		vo.setContent("namespace ï¿½ï¿½ ï¿½È³ï¿½ï¿½Ã±ï¿½");
 		boardService.insertBoard(vo);
 		
-		//4.±Û ¸ñ·Ï °Ë»ö ±â´É Å×½ºÆ®
+		//4.ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		for(BoardVO board : boardList) {
 			System.out.println("---> " + board.toString());
+			System.out.println("test;;;;;");
 		}
 
-		//5. spring ÄÁÅ×ÀÌ³Ê Á¾·á
+		//5. spring ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½
 		container.close();
 	}
 }

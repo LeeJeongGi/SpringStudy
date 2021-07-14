@@ -28,7 +28,7 @@ public class BoardServiceClient {
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		for(BoardVO board : boardList) {
 			System.out.println("---> " + board.toString());
-			System.out.println("test;;;;;");
+			
 		}
 
 		//5. spring �����̳� ����

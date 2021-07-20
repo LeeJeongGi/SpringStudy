@@ -14,12 +14,12 @@ public class DispatcherServlet extends HttpServlet {
 	private HandlerMapping handlerMapping;
 	private ViewResolver viewResolver;
 	
-	public void init() throws ServletException {
-		handlerMapping = new HandlerMapping();
-		viewResolver = new ViewResolver();
-		viewResolver.setPrefix("./");
-		viewResolver.setsuffix(".jsp");
-	}
+//	public void init() throws ServletException {
+//		handlerMapping = new HandlerMapping();
+//		viewResolver = new ViewResolver();
+//		viewResolver.setPrefix("./");
+//		viewResolver.setsuffix(".jsp");
+//	}
        
     /**
      * @see HttpServlet#HttpServlet()

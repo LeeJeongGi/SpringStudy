@@ -6,7 +6,8 @@
 <!DOCTYPE html>
 <%
 	// 세션에 저장된 글 목록을 꺼낸다.
-	List<BoardVO> boardList = (List) session.getAttribute("boardList");
+// 	List<BoardVO> boardList = (List) session.getAttribute("boardList");
+	List<BoardVO> boardList = (List) request.getAttribute("boardList");
 %>
 <html>
 <head>

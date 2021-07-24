@@ -4,14 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.spring.view.controller.Controller;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
 public class GetBoardController implements Controller {
 
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		
 		System.out.println("확인=====");
 		
@@ -26,10 +28,15 @@ public class GetBoardController implements Controller {
 		BoardVO board = boardDAO.getBoard(vo);
 		
 		//3. 검색 결과를 세션에 저장하고 상세 화면을 리턴
-		HttpSession session = request.getSession();
-		session.setAttribute("board", board);
+//		HttpSession session = request.getSession();
+//		session.setAttribute("board", board);
 		
-		return "getBoard";
+		ModelAndView mdv = new ModelAndView();
+		mdv.addObject("board", board);
+		mdv.setViewName("getBoard");
+		
+		return mdv;
+		
 	}
 
 }

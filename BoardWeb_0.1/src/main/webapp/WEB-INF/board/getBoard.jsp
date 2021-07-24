@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <%
 	// 세션에 저장된 게시글 정보를 꺼낸다
-	BoardVO board = (BoardVO) session.getAttribute("board");
+// 	BoardVO board = (BoardVO) session.getAttribute("board");
+	BoardVO board = (BoardVO) request.getAttribute("board");
 %>
 <html>
 <head>

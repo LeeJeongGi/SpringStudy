@@ -5,14 +5,16 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.spring.view.controller.Controller;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
 public class UpdateBoardController implements Controller {
 
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		
 		//1.사용자 입력 정보 추출
 		try {
@@ -36,7 +38,10 @@ public class UpdateBoardController implements Controller {
 		BoardDAO boardDAO = new BoardDAO();
 		boardDAO.updateBoard(vo);
 		
-		return "getBoardList.do";
+		ModelAndView mdv = new ModelAndView();
+		mdv.setViewName("redirect:getBoardList.do");
+		
+		return mdv;
 	}
 
 }

@@ -33,7 +33,7 @@ public class GetBoardController implements Controller {
 		
 		ModelAndView mdv = new ModelAndView();
 		mdv.addObject("board", board);
-		mdv.setViewName("getBoard");
+		mdv.setViewName("getBoard.jsp");
 		
 		return mdv;
 		

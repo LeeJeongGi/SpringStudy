@@ -29,7 +29,7 @@ public class GetBoardListController implements Controller{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardList", boardList);
-		mav.setViewName("getBoardList");
+		mav.setViewName("getBoardList.jsp");
 		
 		return mav;
 	}

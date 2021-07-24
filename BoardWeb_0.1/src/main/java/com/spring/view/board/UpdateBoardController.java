@@ -39,7 +39,7 @@ public class UpdateBoardController implements Controller {
 		boardDAO.updateBoard(vo);
 		
 		ModelAndView mdv = new ModelAndView();
-		mdv.setViewName("redirect:getBoardList.do");
+		mdv.setViewName("getBoardList.do");
 		
 		return mdv;
 	}

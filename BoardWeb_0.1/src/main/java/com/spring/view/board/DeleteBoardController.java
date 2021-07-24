@@ -25,7 +25,7 @@ public class DeleteBoardController implements Controller {
 		boardDAO.deleteBoard(vo);
 		
 		ModelAndView mdv = new ModelAndView();
-		mdv.setViewName("redirect:getBoardList.do");
+		mdv.setViewName("getBoardList.do");
 		
 		return mdv;
 	}

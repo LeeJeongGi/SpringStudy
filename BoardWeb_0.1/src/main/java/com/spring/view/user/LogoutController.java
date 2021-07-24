@@ -18,7 +18,7 @@ public class LogoutController implements Controller {
 		session.invalidate();
 		
 		ModelAndView mdv = new ModelAndView();
-		mdv.setViewName("redirect:login.jsp");
+		mdv.setViewName("login.jsp");
 		
 		return mdv;
 	}

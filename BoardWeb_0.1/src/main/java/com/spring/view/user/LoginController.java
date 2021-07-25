@@ -1,40 +1,43 @@
 package com.spring.view.user;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springbook.biz.user.UserVO;
 import com.springbook.biz.user.impl.UserDAO;
 
-public class LoginController implements Controller {
+@Controller
+public class LoginController {
 
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
-
-		// 1.사용자 입력 정보 추출
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
+	@RequestMapping("/login.do")
+	public String login(UserVO vo, UserDAO userDAO) {
 		
-		// 2.Db 연동 처리
-		UserVO vo = new UserVO();
-		vo.setId(id);
-		vo.setPassword(password);
+		System.out.println("---> 로그인 기능");
 		
-		UserDAO userDAO = new UserDAO();
-		UserVO user = userDAO.getUser(vo);
+		if(userDAO.getUser(vo) != null) return "getBoardList.do";
+		else return "login.jsp";
 		
-		// 3.화면 네비게이션
-		ModelAndView mav = new ModelAndView();
-		if (user != null) {
-			mav.setViewName("getBoardList.do");
-		} else {
-			mav.setViewName("login.jsp");
-		}
-		
-		return mav;
+//		// 1.사용자 입력 정보 추출
+//		String id = request.getParameter("id");
+//		String password = request.getParameter("password");
+//		
+//		// 2.Db 연동 처리
+//		UserVO vo = new UserVO();
+//		vo.setId(id);
+//		vo.setPassword(password);
+//		
+//		UserDAO userDAO = new UserDAO();
+//		UserVO user = userDAO.getUser(vo);
+//		
+//		// 3.화면 네비게이션
+//		ModelAndView mav = new ModelAndView();
+//		if (user != null) {
+//			mav.setViewName("getBoardList.do");
+//		} else {
+//			mav.setViewName("login.jsp");
+//		}
+//		
+//		return mav;
 		
 	}
 

@@ -9,9 +9,12 @@ import com.springbook.biz.board.impl.BoardDAO;
 @Controller
 public class InsertBoardController {
 	@RequestMapping(value="/insertBoard.do")
-	public void insertBoard(BoardVO vo) {
+	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
 		
 		System.out.println("글 등록 처리");
+		
+		boardDAO.insertBoard(vo);
+		return "getBoardList.do";
 		
 		//1. 사용자 입력 정보 추출
 //		try {
@@ -29,11 +32,6 @@ public class InsertBoardController {
 //		vo.setTitle(title);
 //		vo.setWriter(writer);
 //		vo.setContent(content);
-		
-		BoardDAO boardDAO = new BoardDAO();
-		boardDAO.insertBoard(vo);
-		
-		
 	}
 
 }

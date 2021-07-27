@@ -1,8 +1,8 @@
 package com.spring.view.board;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
@@ -11,25 +11,23 @@ import com.springbook.biz.board.impl.BoardDAO;
 public class BoardController {
 
 	@RequestMapping("/getBoard.do")
-	public ModelAndView getBoard(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
+	public String getBoard(BoardVO vo, BoardDAO boardDAO, Model model) {
 		
 		System.out.println("확인=====");
 		
-		mav.addObject("board", boardDAO.getBoard(vo));
-		mav.setViewName("getBoard.jsp");
+		model.addAttribute("board", boardDAO.getBoard(vo));
 		
-		return mav;
+		return "getBoard.jsp";
 	}
 	
 	@RequestMapping("/getBoardList.do")
-	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
+	public String getBoardList(BoardVO vo, BoardDAO boardDAO, Model model) {
 		System.out.println("글 목록 검색 처리 ");
 		
 		//어노테이션으로 설정
-		mav.addObject("boardList", boardDAO.getBoardList(vo));
-		mav.setViewName("getBoardList.jsp");
+		model.addAttribute("boardList", boardDAO.getBoardList(vo));
 		
-		return mav;
+		return "getBoardList.jsp";
 	}
 	
 	@RequestMapping(value="/insertBoard.do")

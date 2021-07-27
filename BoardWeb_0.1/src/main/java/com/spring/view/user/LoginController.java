@@ -1,5 +1,7 @@
 package com.spring.view.user;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,11 +12,15 @@ import com.springbook.biz.user.impl.UserDAO;
 public class LoginController {
 
 	@RequestMapping("/login.do")
-	public String login(UserVO vo, UserDAO userDAO) {
+	public String login(UserVO vo, UserDAO userDAO, HttpSession session) {
 		
 		System.out.println("---> 로그인 기능");
+		UserVO user = userDAO.getUser(vo);
 		
-		if(userDAO.getUser(vo) != null) return "getBoardList.do";
+		if(userDAO.getUser(vo) != null) {
+			session.setAttribute("userName", user.getName());
+			return "getBoardList.do";
+		}
 		else return "login.jsp";
 		
 //		// 1.사용자 입력 정보 추출

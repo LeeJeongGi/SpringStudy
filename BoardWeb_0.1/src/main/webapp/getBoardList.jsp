@@ -17,7 +17,7 @@
 <body>
 <center>
 <h1>글 목록</h1>
-<h3>이정기님 환영합니다.<a href="login.do">Log-out</a></h3>
+<h3>${userName}님! 환영합니다.<a href="login.do">Log-out</a></h3>
 
 <!-- 검색 시작 -->
 <form action="getBoardList.do" method="post">

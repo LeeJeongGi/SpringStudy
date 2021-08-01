@@ -1,21 +1,27 @@
 package com.spring.view.board;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
 @Controller
 public class BoardController {
+	
+	@Autowired
+	private BoardService boardService;
 
 	@RequestMapping("/getBoard.do")
 	public String getBoard(BoardVO vo, BoardDAO boardDAO, Model model) {
 		
 		System.out.println("확인=====");
 		
-		model.addAttribute("board", boardDAO.getBoard(vo));
+		model.addAttribute("board", boardService.getBoard(vo));
+//		model.addAttribute("board", boardDAO.getBoard(vo));
 		
 		return "getBoard.jsp";
 	}
@@ -25,7 +31,8 @@ public class BoardController {
 		System.out.println("글 목록 검색 처리 ");
 		
 		//어노테이션으로 설정
-		model.addAttribute("boardList", boardDAO.getBoardList(vo));
+		model.addAttribute("boardList", boardService.getBoardList(vo));
+//		model.addAttribute("boardList", boardDAO.getBoardList(vo));
 		
 		return "getBoardList.jsp";
 	}
@@ -35,7 +42,9 @@ public class BoardController {
 		
 		System.out.println("글 등록 처리");
 		
-		boardDAO.insertBoard(vo);
+		boardService.insertBoard(vo);
+		
+//		boardDAO.insertBoard(vo);
 		return "getBoardList.do";
 	}
 	
@@ -43,7 +52,8 @@ public class BoardController {
 	public String updateBoard(BoardVO vo, BoardDAO boardDAO) {
 		
 		System.out.println("--> 글 수정");
-		boardDAO.updateBoard(vo);
+		boardService.updateBoard(vo);
+//		boardDAO.updateBoard(vo);
 		
 		return "getBoardList.do";
 	}
@@ -52,8 +62,8 @@ public class BoardController {
 	public String deleteBoard(BoardVO vo, BoardDAO boardDAO) {
 		
 		System.out.println("--> 글 삭제 기능");
-		
-		boardDAO.deleteBoard(vo);
+		boardService.deleteBoard(vo);
+//		boardDAO.deleteBoard(vo);
 		
 		return "getBoardList.do";
 	}

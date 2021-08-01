@@ -30,6 +30,13 @@ public class BoardController {
 	public String getBoardList(BoardVO vo, BoardDAO boardDAO, Model model) {
 		System.out.println("글 목록 검색 처리 ");
 		
+		if(vo.getSearchCondition() == null) {
+			vo.setSearchCondition("TITLE");
+		}
+		if(vo.getSearchKeyword() == null) {
+			vo.setSearchKeyword("");
+		}
+		
 		//어노테이션으로 설정
 		model.addAttribute("boardList", boardService.getBoardList(vo));
 //		model.addAttribute("boardList", boardDAO.getBoardList(vo));

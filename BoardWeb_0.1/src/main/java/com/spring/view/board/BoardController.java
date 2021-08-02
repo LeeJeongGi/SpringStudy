@@ -1,9 +1,13 @@
 package com.spring.view.board;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
@@ -45,9 +49,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/insertBoard.do")
-	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
+	public String insertBoard(BoardVO vo, BoardDAO boardDAO) throws IOException {
 		
 		System.out.println("글 등록 처리");
+		
+		//파일 업로드 처리
+		MultipartFile uploadFile = vo.getUploadFile();
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			uploadFile.transferTo(new File("D:/" + fileName));
+		}
 		
 		boardService.insertBoard(vo);
 		
